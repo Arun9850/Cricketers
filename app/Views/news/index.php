@@ -9,6 +9,7 @@
                 <div class="card w-100 mt-3">
                     <div class="card-body">
                         <h3 class="card-title"><?= esc($cricketer['name']) ?> (<?= esc($cricketer['country']) ?>)</h3>
+                        <img src="<?= esc($cricketer['image']) ?>" alt="Virat in a jacket" width="100" height="100">
                         <p><strong>Matches:</strong> <?= esc($cricketer['matches']) ?></p>
                         <p><strong>Runs:</strong> <?= esc($cricketer['runs']) ?></p>
                         <p><strong>Avg:</strong> <?= esc($cricketer['average']) ?></p>

@@ -6,12 +6,18 @@ use App\Controllers\Pages;
 use App\Controllers\Ajax;
 use App\Controllers\Apis;
 
+// ✅ Homepage Route
+$routes->get('/', 'Home::index');
 
-$routes->get('/', 'Home::index');  
-$routes->get('news', 'News::index');
-$routes->get('news/(:segment)', 'News::show/$1');
+// ✅ Routes for Cricketer Reviews
+$routes->get('news', 'News::index'); // List all cricketers
+$routes->get('news/new', 'News::new'); // ✅ Show the "Add Cricketer" form
+$routes->post('news/create', 'News::create'); // ✅ Process form submission
+$routes->get('news/(:segment)', 'News::show/$1'); // ✅ Show a specific cricketer profile
+
+// ✅ Route for AJAX Requests
 $routes->get('ajax/get/(:segment)', 'Ajax::get/$1');
-$routes->get('news/new', 'News::new');
-$routes->post('news/create', 'News::create'); 
+
+// ✅ Pages Routes
 $routes->get('pages', 'Pages::index');
-$routes->get('(:segment)', 'Pages::view');
+$routes->get('(:segment)', 'Pages::view'); // Catch-all for pages
