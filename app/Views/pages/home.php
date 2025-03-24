@@ -3,158 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Cricketer Reviews - Legends of Cricket</title>
-    <link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>">
+    <title>Cricketer Reviews | The Cricket Hub</title>
+    <meta name="description" content="Explore reviews of the world's greatest cricketers, their stats, achievements, and career highlights.">
+    <meta name="keywords" content="cricket, cricketer reviews, cricket stats, batting average, world cup winners">
+    
+    <!-- Bootstrap & FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f4f4f4;
-            color: #333;
+            background: rgb(35, 209, 90);
         }
-
-        /* Header Styling */
-        header {
-            background: #222;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        header nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-size: 18px;
-        }
-
-        header nav a:hover {
-            color: #d92332;
-        }
-
-        /* Hero Section */
         .hero {
             background: url('<?= base_url("assets/images/cricket-banner.jpg"); ?>') no-repeat center center/cover;
             height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            color: white;
-            font-size: 2rem;
+            color: black;
+            font-size: 3rem;
             font-weight: bold;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            text-shadow: 4px 3px 10px rgba(0, 0, 0, 0.7);
         }
-
-        /* Main Content Section */
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 40px 0;
-            text-align: center;
+        .card {
+            transition: 0.3s;
+            border: none;
+            border-radius: 10px;
         }
-
-        .section {
-            background: white;
-            padding: 30px;
-            margin: 20px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .card:hover {
+            transform: scale(1.05);
         }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background: #d92332;
+        .btn-view {
+            background-color: #d92332;
+            color: white;
+        }
+        .btn-view:hover {
+            background-color: #b81d2a;
+        }
+        .footer-links a {
             color: white;
             text-decoration: none;
-            border-radius: 5px;
-            transition: 0.3s;
+            margin: 0 10px;
         }
-
-        .btn:hover {
-            background: #b81d2a;
-        }
-
-        /* Footer Styling */
-        footer {
-            background: #222;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .container {
-                width: 90%;
-            }
-
-            .hero h1 {
-                font-size: 1.5rem;
-            }
-
-            header nav a {
-                font-size: 16px;
-            }
-
-            footer p {
-                font-size: 14px;
-            }
+        .footer-links a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
-    <header>
-        <nav>
-            <a href="<?= base_url(); ?>">Home</a>
-            <a href="<?= base_url('news'); ?>">Cricketers</a>
-            <a href="<?= base_url('news/new'); ?>">Add Cricketer</a>
-            <a href="<?= base_url('pages/contact'); ?>">Contact</a>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <div class="hero">
-        <h1>Welcome to Cricketer Reviews - Celebrating Legends of Cricket</h1>
-    </div>
-
-    <!-- Main Content -->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <div class="section">
-            <h2>Why Cricket?</h2>
-            <p>Cricket is not just a game; it's an emotion. From thrilling T20 matches to historic Test cricket, this sport has produced countless legends.</p>
-            <a href="<?= base_url('news'); ?>" class="btn">Explore Cricketers</a>
-        </div>
-
-        <div class="section">
-            <h2>Top Cricketers</h2>
-            <p>Explore our top-rated cricketers based on their performance and achievements.</p>
-            <ul>
-                <li>🏏 <strong>Virat Kohli</strong> (India) - 25000 Runs, Avg: 55.4</li>
-                <li>🏏 <strong>Joe Root</strong> (England) - 17000 Runs, Avg: 50.8</li>
-                <li>🏏 <strong>Steve Smith</strong> (Australia) - 19000 Runs, Avg: 58.1</li>
-                <li>🏏 <strong>Babar Azam</strong> (Pakistan) - 14000 Runs, Avg: 54.2</li>
+        <a class="navbar-brand" href="<?= base_url(); ?>">Cricket Hub</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= base_url('news'); ?>">Cricketers</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= base_url('news/new'); ?>">Add Cricketer</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?= base_url('pages/contact'); ?>">Contact</a></li>
             </ul>
         </div>
+    </div>
+</nav>
 
-        <div class="section">
-            <h2>Join the Discussion</h2>
-            <p>Want to add your favorite cricketer or review a match? Get involved now!</p>
-            <a href="#" id="addCricketerBtn" class="btn">Add a Cricketer</a>
-            <div id="addCricketerSection"></div>
+<!-- Hero Section -->
+<div class="hero">
+    <h1>Welcome to Cricketer Reviews - Celebrating Legends of Cricket</h1>
+</div>
 
+<!-- Main Content -->
+<div class="container mt-5">
+    <div class="row">
+        <!-- Main Content Section -->
+        <div class="col-md-8">
+            <h2>Why Cricket?</h2>
+            <p>Cricket is not just a game; it's an emotion. From thrilling T20 matches to historic Test cricket, this sport has produced countless legends.</p>
+            
+            <h3>Top Cricketers</h3>
+            <p>Explore our top-rated cricketers based on their performance and achievements.</p>
+
+            <ul class="list-group">
+                <li class="list-group-item">🏏 <strong>Sachin Tendulkar (India)</strong> - 34000 Runs, Avg: 58.65</li>
+                <li class="list-group-item">🏏 <strong>Virat Kohli (India)</strong> - 25000 Runs, Avg: 55.4</li>
+                <li class="list-group-item">🏏 <strong>Joe Root (England)</strong> - 17000 Runs, Avg: 50.8</li>
+                <li class="list-group-item">🏏 <strong>Steve Smith (Australia)</strong> - 19000 Runs, Avg: 58.1</li>
+                <li class="list-group-item">🏏 <strong>Babar Azam (Pakistan)</strong> - 14000 Runs, Avg: 54.2</li>
+                <li class="list-group-item">🏏 <strong>Paras Khadka (Nepal)</strong> - 18000 Runs, Avg: 56.45</li>
+            </ul>
+
+            <h3 class="mt-4">Join the Discussion</h3>
+            <p>Want to add your favorite cricketer or review a match? <a href="<?= base_url('news/new'); ?>" class="btn btn-sm btn-view">Add a Cricketer</a></p>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-md-4">
+            <h3>Cricketer Categories</h3>
+            <ul class="list-group">
+                <li class="list-group-item"><a href="<?= base_url('top-batsmen'); ?>">🏏 Top Batsmen</a></li>
+                <li class="list-group-item"><a href="<?= base_url('legendary-bowlers'); ?>">🔥 Legendary Bowlers</a></li>
+                <li class="list-group-item"><a href="<?= base_url('all-rounders'); ?>">🌟 All-Rounders</a></li>
+                <li class="list-group-item"><a href="<?= base_url('emerging-stars'); ?>">🚀 Emerging Stars</a></li>
+            </ul>
+
+            <h3 class="mt-4">Cricket Achievements</h3>
+            <ul class="list-group">
+                <li class="list-group-item"><a href="<?= base_url('world-cup-winners'); ?>">🏆 World Cup Winners</a></li>
+                <li class="list-group-item"><a href="<?= base_url('ipl-champions'); ?>">🥇 IPL Champions</a></li>
+                <li class="list-group-item"><a href="<?= base_url('most-centuries'); ?>">🏅 Most Centuries</a></li>
+            </ul>
         </div>
     </div>
+</div>
 
-    <!-- Footer Section -->
-    <footer>
+<!-- Footer -->
+<footer class="bg-dark text-white py-4 mt-5">
+    <div class="container text-center">
         <p>&copy; 2025 Cricketer Reviews. All Rights Reserved.</p>
-    </footer>
+        <div class="footer-links">
+            <a href="<?= base_url('pages/about'); ?>">About Us</a> |
+            <a href="<?= base_url('pages/contact'); ?>">Contact</a> |
+            <a href="<?= base_url('pages/privacy'); ?>">Privacy Policy</a> |
+            <a href="<?= base_url('pages/terms'); ?>">Terms & Conditions</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
