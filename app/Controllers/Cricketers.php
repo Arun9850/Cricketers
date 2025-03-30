@@ -70,7 +70,6 @@ class Cricketers extends Controller
         return view('cricketers/list', $data);
     }
 
-    // FIX: These functions must be inside the class!
     public function worldCupWinners()
     {
         $data = [
@@ -117,4 +116,4 @@ class Cricketers extends Controller
         ];
         return view('cricketers/achievements', $data);
     }
-} 
+}
