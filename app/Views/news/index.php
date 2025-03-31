@@ -1,13 +1,12 @@
-
 <!-- Hero Section -->
 <div class="hero">
     <h1>Welcome to Cricketer Reviews</h1>
-    <p id="location-info" class="text-light fs-5 mt-2"></p>
+    <p id="location-info" class="fs-5 mt-2" style="background-color: rgb(0, 255, 255); color: #00fff; padding: 10px 20px; border-radius: 10px; font-weight: bold; max-width: 90%; text-align: center;"></p>
 </div>
 
 <!-- Live Matches Section -->
 <div class="container mt-5">
-    <h2 class="text-center mb-4">📺 Today's Matches</h2>
+    <h2 class="text-center mb-4">📻 Today's Matches</h2>
     <div class="row">
         <?php if (!empty($today_matches)): ?>
             <?php foreach ($today_matches as $match): ?>
@@ -17,29 +16,6 @@
             <p class="text-center text-muted">No matches today.</p>
         <?php endif; ?>
     </div>
-
-    <h2 class="text-center my-4">🕑 Upcoming Matches</h2>
-    <div class="row">
-        <?php if (!empty($upcoming_matches)): ?>
-            <?php foreach ($upcoming_matches as $match): ?>
-                <?= view('news/_match_card', ['match' => $match]) ?>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p class="text-center text-muted">No upcoming matches.</p>
-        <?php endif; ?>
-    </div>
-
-    <h2 class="text-center my-4">🏁 Completed Matches</h2>
-    <div class="row">
-        <?php if (!empty($completed_matches)): ?>
-            <?php foreach ($completed_matches as $match): ?>
-                <?= view('news/_match_card', ['match' => $match]) ?>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p class="text-center text-muted">No completed matches.</p>
-        <?php endif; ?>
-    </div>
-</div>
 
 <!-- 🔍 Cricketer Search Autocomplete -->
 <div class="container mt-5">
@@ -92,7 +68,7 @@
                                     <p><strong>Runs:</strong> ${cricketer.runs}</p>
                                     <p><strong>Avg:</strong> ${cricketer.average}</p>
                                     <p><strong>Achievements:</strong> ${cricketer.achievements}</p>
-                                    <a href="/news/${cricketer.slug}" class="btn btn-view">View Profile</a>
+                                    <a href="<?= base_url('news') ?>/${cricketer.slug}" class="btn btn-view">View Profile</a>
                                     <button class="btn btn-info" onclick="getData('${cricketer.slug}')">View via Ajax</button>
                                 </div>
                             </div>
@@ -170,9 +146,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     success: function (response) {
                         let suggestions = '';
                         response.forEach(function (cricketer) {
-                            suggestions += `<li class="list-group-item">
-                                <a href="/news/${cricketer.slug}">${cricketer.name} (${cricketer.country})</a>
-                            </li>`;
+                            if (cricketer.external) {
+                                suggestions += `<li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>${cricketer.name} (${cricketer.country})</span>
+                                    <button class="btn btn-sm btn-success" onclick="addCricketer('${cricketer.name}', '${cricketer.slug}', '${cricketer.country}')">Add to DB</button>
+                                </li>`;
+                            } else {
+                                suggestions += `<li class="list-group-item">
+                                    <a href="/news/${cricketer.slug}">${cricketer.name} (${cricketer.country})</a>
+                                </li>`;
+                            }
                         });
                         $('#suggestions').html(suggestions);
                     },
@@ -185,4 +168,24 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
+
+    function addCricketer(name, slug, country) {
+        $.ajax({
+            url: "<?= base_url('ajax/add') ?>",
+            method: "POST",
+            data: {
+                name: name,
+                slug: slug,
+                country: country
+            },
+            success: function (response) {
+                alert("✅ Cricketer added successfully!");
+                $('#searchInput').val('');
+                $('#suggestions').empty();
+            },
+            error: function () {
+                alert("❌ Failed to add cricketer.");
+            }
+        });
+    }
 </script>

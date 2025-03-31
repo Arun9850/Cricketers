@@ -10,12 +10,18 @@
 
             <!-- Match Info -->
             <div class="flex-grow-1">
-                <h5 class="card-title">
-                    <?= esc($match['localteam']['name'] ?? 'Team A') ?> vs <?= esc($match['visitorteam']['name'] ?? 'Team B') ?>
-                </h5>
-                <p><strong>Type:</strong> <?= strtoupper(esc($match['type'] ?? 'N/A')) ?></p>
+                <?php
+                    // Safely extract team names from CricAPI
+                    $team1 = $match['teamInfo'][0]['name'] ?? 'Team A';
+                    $team2 = $match['teamInfo'][1]['name'] ?? 'Team B';
+
+                    // Format date
+                    $date = isset($match['date']) ? date('Y-m-d', strtotime($match['date'])) : 'N/A';
+                ?>
+                <h5 class="card-title"><?= esc($team1) ?> vs <?= esc($team2) ?></h5>
+                <p><strong>Type:</strong> <?= strtoupper(esc($match['matchType'] ?? 'N/A')) ?></p>
                 <p><strong>Venue:</strong> <?= esc($match['venue'] ?? 'Unknown') ?></p>
-                <p><strong>Date:</strong> <span class="badge bg-primary"><?= esc($match['date'] ?? 'N/A') ?></span></p>
+                <p><strong>Date:</strong> <span class="badge bg-primary"><?= esc($date) ?></span></p>
                 <p><strong>Status:</strong> <span class="badge bg-warning text-dark"><?= esc($match['status'] ?? 'N/A') ?></span></p>
             </div>
         </div>

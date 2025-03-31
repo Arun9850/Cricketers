@@ -1,0 +1,20 @@
+
+*** These modified files were found in JOE when it aborted on Sun Mar 30 02:14:28 2025
+*** JOE was aborted because the terminal closed
+
+*** File '(Unnamed)'
+/home/stud/0/2304466/.gitconfig
+
+*** File '/home/stud/0/2304466/.gitconfig'
+ git commit --amend --reset-author
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+#	name = Yadav Arun
+#	email = 2304466@csl-student.wlv.ac.uk
+
+*** File '* Startup Log *'
+Processing '/etc/joe/editorrc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/editorrc
