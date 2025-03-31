@@ -7,6 +7,7 @@ use CodeIgniter\Controller;
 
 class Ajax extends Controller
 {
+    // ✅ Get All Cricketers for Cards Display
     public function getAllCricketers()
     {
         $model = new CricketerModel();
@@ -14,7 +15,8 @@ class Ajax extends Controller
         return $this->response->setJSON($cricketers);
     }
 
-    public function getCricketer($slug = null)
+    // ✅ Get Single Cricketer by Slug (used for View via Ajax)
+    public function get($slug = null)
     {
         if ($slug === null) {
             return $this->response->setJSON(['error' => 'Slug is missing']);
@@ -30,6 +32,7 @@ class Ajax extends Controller
         return $this->response->setJSON($cricketer);
     }
 
+    // ✅ Autocomplete Search with Fallback to CricAPI
     public function search()
     {
         $query = $this->request->getGet('q');
@@ -49,7 +52,7 @@ class Ajax extends Controller
             return $this->response->setJSON($results);
         }
 
-        // Fetch from CricAPI if not found locally
+        // Search from CricAPI if not found locally
         $apiKey = '285cc4b5-6bb5-4091-a592-d4c760e048fe';
         $apiUrl = 'https://api.cricapi.com/v1/players?apikey=' . $apiKey . '&search=' . urlencode($query);
 
@@ -77,7 +80,7 @@ class Ajax extends Controller
         }
     }
 
-    // ✅ Add Cricketer to DB
+    // ✅ Add Cricketer to DB from Search Results
     public function addCricketer()
     {
         $request = service('request');
@@ -93,7 +96,7 @@ class Ajax extends Controller
             'name'         => $data['name'],
             'slug'         => $data['slug'],
             'country'      => $data['country'],
-            'image'        => '',
+            'image'        => '', // placeholder
             'matches'      => 0,
             'runs'         => 0,
             'average'      => 0,
